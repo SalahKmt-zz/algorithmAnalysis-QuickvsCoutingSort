@@ -28,7 +28,8 @@ options = sys.argv[2:]
 if '-p' in options: # On imprime les nombres triés    
     for i, value in enumerate(index):
         if value != 0:
-            print(i, end=', ')
+            for j in range(1, value): 
+                print(i, end=', ')
              
-if '-t' in options: # On imprime le temps d'exécution
+#if '-t' in options: # On imprime le temps d'exécution
     #print("4.1347628746") # Données bidon, mais output du bon format demandé
