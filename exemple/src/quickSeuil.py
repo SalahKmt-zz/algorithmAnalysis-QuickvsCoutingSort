@@ -37,6 +37,17 @@ def quick_sort_data(data):
     else :
         return data
 
+def insertion_sort(data):
+    for i in range(1, len(data)):
+        value_to_insert = data[i]
+        hole_index = i
+        while hole_index > 0 and value_to_insert < data[hole_index - 1]:
+            data[hole_index] = data[hole_index - 1]
+            hole_index -= 1
+        data[hole_index] = value_to_insert
+
+    return data 
+
 def run():
     data = get_data()
 

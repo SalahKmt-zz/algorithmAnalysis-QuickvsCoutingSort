@@ -26,21 +26,17 @@ def quick_sort_data(data):
             elif value == pivot:
                 nbr_of_pivot_equal += 1
                 
-        #sorted_data.append(quick_sort_data(less_data))
         first_part = quick_sort_data(less_data)
+
         for _i in range(0, nbr_of_pivot_equal):
             sorted_data.append(pivot)
+
         second_part = quick_sort_data(greater_data)
-        #sorted_data.append(quick_sort_data(greater_data))
 
-        return first_part + sorted_data + second_part #sorted_data
-
+        return first_part + sorted_data + second_part 
     else :
         return data
 
-    
-
-#print(greater_data)
 def run():
     data = get_data()
 
