@@ -4,8 +4,7 @@ ex_path = sys.argv[1] # Path de l'exemplaire
 
 # Algo ici
 # create the index
-data = open(ex_path, "r")
-array = []
+data = []
 index = []
 max = 0
 
@@ -13,7 +12,7 @@ max = 0
 with open(ex_path) as f:
     for line in f: 
         value = [int(x) for x in line.split()][0]
-        array.append(value)
+        data.append(value)
         if max < value: 
             max = value
 
