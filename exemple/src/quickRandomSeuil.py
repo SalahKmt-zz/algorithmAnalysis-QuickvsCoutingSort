@@ -1,9 +1,11 @@
 import sys
+import time
+import random
 
-ex_path = sys.argv[1] # Path de l'exemplaire
+#ex_path = sys.argv[1] # Path de l'exemplaire
 
 # store data in memory
-def get_data():
+def get_data(ex_path):
     data = []
     with open(ex_path) as f:
         for line in f: 
@@ -13,7 +15,8 @@ def get_data():
 def quick_sort_data(data):
     sorted_data = []
     if len(data) >= 2:
-        pivot = data[0]
+        #choose the pivot from a random position
+        pivot = data[random.randint(0,len(data)-1)]
         greater_data = []
         less_data = []
         nbr_of_pivot_equal = 0
@@ -35,7 +38,7 @@ def quick_sort_data(data):
 
         return first_part + sorted_data + second_part 
     else :
-        return data
+        return insertion_sort(data)
 
 def insertion_sort(data):
     for i in range(1, len(data)):
@@ -49,17 +52,26 @@ def insertion_sort(data):
     return data 
 
 def run():
-    data = get_data()
+    
+    ex_path = sys.argv[1] # Path de l'exemplaire
+    ex_path_temp = ex_path
 
-    print(insertion_sort(data))
+    for i in range(0, 29):
+        ex_path = ex_path_temp + "_" + str(i) + ".txt"
+        
+        data = get_data(ex_path)
 
-    options = sys.argv[2:]
+        start = time.time()
+        sorted_values = quick_sort_data(data)
+        end = time.time()
 
-    if '-p' in options: # On imprime les nombres triés    
-        print("sorted values here")
-                
-    if '-t' in options: # On imprime le temps d'exécution
-        print("4.1347628746") # Données bidon, mais output du bon format demandé
+        options = sys.argv[2:]
+
+        if '-p' in options: # On imprime les nombres triés    
+            print(sorted_values)
+                    
+        if '-t' in options: # On imprime le temps d'exécution
+            print(end - start) # Données bidon, mais output du bon format demandé
 
 if __name__ == '__main__':
     run()

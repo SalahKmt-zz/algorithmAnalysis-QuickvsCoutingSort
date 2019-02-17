@@ -1,4 +1,5 @@
 import sys
+import time
 
 ex_path = sys.argv[1] # Path de l'exemplaire
 
@@ -40,15 +41,17 @@ def quick_sort_data(data):
 def run():
     data = get_data()
 
-    print(quick_sort_data(data))
+    start = time.time()
+    sorted_values = quick_sort_data(data)
+    end = time.time()
 
     options = sys.argv[2:]
 
     if '-p' in options: # On imprime les nombres triés    
-        print("sorted values here")
+        print(sorted_values)
                 
     if '-t' in options: # On imprime le temps d'exécution
-        print("4.1347628746") # Données bidon, mais output du bon format demandé
+        print(end - start) # Données bidon, mais output du bon format demandé
 
 if __name__ == '__main__':
     run()

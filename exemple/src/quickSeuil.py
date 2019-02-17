@@ -1,4 +1,5 @@
 import sys
+import time
 
 ex_path = sys.argv[1] # Path de l'exemplaire
 
@@ -12,7 +13,7 @@ def get_data():
 
 def quick_sort_data(data):
     sorted_data = []
-    if len(data) >= 2:
+    if len(data) >= 8:
         pivot = data[0]
         greater_data = []
         less_data = []
@@ -35,7 +36,7 @@ def quick_sort_data(data):
 
         return first_part + sorted_data + second_part 
     else :
-        return data
+        return insertion_sort(data)
 
 def insertion_sort(data):
     for i in range(1, len(data)):
@@ -51,15 +52,17 @@ def insertion_sort(data):
 def run():
     data = get_data()
 
-    print(quick_sort_data(data))
+    start = time.time()
+    sorted_values = quick_sort_data(data)
+    end = time.time()
 
     options = sys.argv[2:]
 
     if '-p' in options: # On imprime les nombres triés    
-        print("sorted values here")
+        print(sorted_values)
                 
     if '-t' in options: # On imprime le temps d'exécution
-        print("4.1347628746") # Données bidon, mais output du bon format demandé
+        print(end - start) # Données bidon, mais output du bon format demandé
 
 if __name__ == '__main__':
     run()
