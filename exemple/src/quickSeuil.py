@@ -1,10 +1,10 @@
 import sys
 import time
 
-ex_path = sys.argv[1] # Path de l'exemplaire
+# ex_path = sys.argv[1] # Path de l'exemplaire
 
 # store data in memory
-def get_data():
+def get_data(ex_path):
     data = []
     with open(ex_path) as f:
         for line in f: 
@@ -50,19 +50,31 @@ def insertion_sort(data):
     return data 
 
 def run():
-    data = get_data()
 
-    start = time.time()
-    sorted_values = quick_sort_data(data)
-    end = time.time()
+    ex_path = sys.argv[1] # Path de l'exemplaire
+    ex_path_temp = ex_path
+    times = []
 
-    options = sys.argv[2:]
+    for i in range(0, 29):
+        ex_path = ex_path_temp + "_" + str(i) + ".txt"
+        data = get_data(ex_path)
 
-    if '-p' in options: # On imprime les nombres triés    
-        print(sorted_values)
-                
-    if '-t' in options: # On imprime le temps d'exécution
-        print(end - start) # Données bidon, mais output du bon format demandé
+        start = time.time()
+        sorted_values = quick_sort_data(data)
+        end = time.time()
+
+        options = sys.argv[2:]
+
+        if '-p' in options: # On imprime les nombres triés    
+            print(sorted_values)
+                    
+        if '-t' in options: # On imprime le temps d'exécution
+            time_ = end - start
+            times.append(time_)
+            # print(end - start) # Données bidon, mais output du bon format demandé
+
+    average_time = sum(times) / len(times)
+    print(average_time)
 
 if __name__ == '__main__':
     run()

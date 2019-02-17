@@ -56,6 +56,8 @@ def run():
     ex_path = sys.argv[1] # Path de l'exemplaire
     ex_path_temp = ex_path
 
+    times = []
+
     for i in range(0, 29):
         ex_path = ex_path_temp + "_" + str(i) + ".txt"
         
@@ -71,7 +73,12 @@ def run():
             print(sorted_values)
                     
         if '-t' in options: # On imprime le temps d'exécution
-            print(end - start) # Données bidon, mais output du bon format demandé
+            time_ = end - start
+            times.append(time_)
+            # print(time_) # Données bidon, mais output du bon format demandé
+
+    average_time = sum(times) / len(times)
+    print(average_time)
 
 if __name__ == '__main__':
     run()
